@@ -49,7 +49,6 @@ void	start_game(t_data *ds)
 
 static void	print_map(t_data *ds)
 {
-	
 	for (int i = 0; ds->map[i] != 0; i++)
 	{
 		for (int j = 0; j < ds->map[i]; j++)
