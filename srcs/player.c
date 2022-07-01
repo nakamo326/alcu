@@ -40,7 +40,7 @@ static int check_input(char *line)
 {
 	int res = 0;
 
-	if (ft_strlen(line) != 2)
+	if (ft_strlen(line) != 1)
 	{
 		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 		return (-1);

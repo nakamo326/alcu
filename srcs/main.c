@@ -5,7 +5,7 @@
 #include "libft.h"
 
 int main(int argc, char** argv) {
-	t_data	ds;
+	t_data	ds = {NULL, 0};
 	int		input_fd;
 
 	switch (argc)
@@ -25,14 +25,10 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 	if (!parse_map(&ds, input_fd)) {
-		return false;
-	}
-	if (ds.map == NULL){
 		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
-	printf("%d\n", ds.map[0]);
-	// start_game(&ds);
+	start_game(&ds);
 	free(ds.map);
 	return 0;
 }

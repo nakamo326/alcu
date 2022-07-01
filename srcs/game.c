@@ -54,7 +54,7 @@ static void	print_map(t_data *ds)
 	{
 		for (int j = 0; j < ds->map[i]; j++)
 		{
-			ft_putendl_fd("| ", STDOUT_FILENO);
+			ft_putstr_fd("| ", STDOUT_FILENO);
 		}
 		ft_putendl_fd("", STDOUT_FILENO);
 	}
