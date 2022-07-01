@@ -12,6 +12,7 @@
 
 #include "alcu.h"
 #include "libft.h"
+#include "get_next_line.h"
 
 static void	print_map(t_data *ds);
 static int	check_over(t_data *ds);
@@ -45,6 +46,7 @@ void	start_game(t_data *ds)
 			break ;
 		}
 	}
+	get_next_line(-1, NULL);
 }
 
 static void	print_map(t_data *ds)
