@@ -50,6 +50,10 @@ static t_list*	raed_map(int input_fd)
 			break;
 		}
 		if (res == SUCCESS) {
+			if (line[0] == '\0') {
+				free(line);
+				break;
+			}
 			t_list* new = ft_lstnew(line);
 			ft_lstadd_back(&head, new);
 		}
