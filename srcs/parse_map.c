@@ -33,9 +33,9 @@ static int	map_atoi(char *s)
 	return (res);
 }
 
-static char**	raed_map(int input_fd)
+static t_list*	raed_map(int input_fd)
 {
-	char	**lines = NULL;
+	t_list *head = NULL;
 	char	*line = NULL;
 	int		line_num = 0;
 
@@ -43,35 +43,35 @@ static char**	raed_map(int input_fd)
 	{
 		int res = get_next_line(input_fd, &line);
 		if (res == ERROR) {
-			ft_free_split(lines);
+			ft_lstclear(&head, free);
 			return NULL;
 		}
 		if (res == END) {
 			if (line[0] != '\0') {
-				ft_extend_split(lines, line_num + 1);
-				lines[line_num] = line;
+				t_list* new = ft_lstnew(line);
+				ft_lstadd_back(&head, new);
 				line_num++;
 			}
 			break;
 		}
 		if (res == SUCCESS) {
-			ft_extend_split(lines, line_num + 1);
-			lines[line_num] = line;
+			printf("line: %s\n", line);
+			t_list* new = ft_lstnew(line);
+			ft_lstadd_back(&head, new);
 			line_num++;
 		}
 	}
-	return lines;
+	return head;
 }
 
-static int*	convert_map(char **lines)
+static int*	convert_map(t_list* line_list)
 {
-	int line_num = 0;
-	while(lines[line_num] != NULL)
-		line_num++;
+	int line_num = ft_lstsize(line_list);
 	int *map = malloc(sizeof(int) * (line_num - 1));
-	for (int i = 0; lines[i] != NULL; i++)
+	t_list* list_ptr = line_list;
+	for (int i = 0; list_ptr != NULL; i++)
 	{
-		int num = map_atoi(lines[i]);
+		int num = map_atoi(list_ptr->content);
 		if (num == -1) {
 			free(map);
 			return NULL;
@@ -83,12 +83,13 @@ static int*	convert_map(char **lines)
 
 bool	parse_map(t_data *ds, int input_fd)
 {
-	char** lines = raed_map(input_fd);
-	if (lines == NULL) {
+	t_list* line_list = raed_map(input_fd);
+	if (line_list == NULL) {
 		return false;
 	}
-	int* map = convert_map(lines);
-	ft_free_split(lines);
+	int* map = convert_map(line_list);
+	ft_lstclear(&line_list, free);
+	puts("===============");
 	ds->map = map;
 	return true;
 }

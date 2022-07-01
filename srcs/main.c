@@ -3,7 +3,6 @@
 
 #include "alcu.h"
 #include "libft.h"
-#include "board.h"
 
 int main(int argc, char** argv) {
 	t_data	ds;
@@ -29,10 +28,11 @@ int main(int argc, char** argv) {
 		return false;
 	}
 	if (ds.map == NULL){
-		ft_putstr("Error\n");
+		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
-	start_game(&ds);
+	printf("%d\n", ds.map[0]);
+	// start_game(&ds);
 	free(ds.map);
 	return 0;
 }

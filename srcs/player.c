@@ -12,6 +12,7 @@
 
 #include "alcu.h"
 #include "libft.h"
+#include "get_next_line.h"
 
 static int check_input(char *line);
 
@@ -23,7 +24,7 @@ void	player(t_data *ds)
 	while (1)
 	{
 		ft_putendl_fd("Please choose between 1 and 3 items", STDOUT_FILENO);
-		// line = get_next_line(STDIN);
+		get_next_line(STDIN_FILENO, &line);
 		pick = check_input(line);
 		free(line);
 
