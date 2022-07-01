@@ -59,20 +59,17 @@ static void	print_map(t_data *ds)
 	}
 }
 
+// validation pick
 void	pick_items(t_data *ds, int pick)
 {
-	int i = 0;
-
-	while (ds->map[i] != 0)
-		i++;
-	i--;
-	while (pick > 0)
-	{
-		ds->map[i]--;
-		if (ds->map[i] == 0)
-			i--;
-		pick--;
+	int i = ds->index;
+	if (ds->map[i] >= pick) {
+		ds->map[i] -= pick;
+	} else {
+		ds->map[i] = 0;
 	}
+	if (ds->map[i] == 0)
+		ds->index--;
 }
 
 static int	check_over(t_data *ds)

@@ -27,8 +27,7 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
-	// start_game(&ds);
-	puts("=============");
+	start_game(&ds);
 	free(ds.map);
 	return 0;
 }

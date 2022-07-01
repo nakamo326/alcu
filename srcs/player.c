@@ -27,12 +27,12 @@ void	player(t_data *ds)
 		get_next_line(STDIN_FILENO, &line);
 		pick = check_input(line);
 		free(line);
-
-		if (pick != -1)
-		{
-			pick_items(ds, pick);
-			break ;
+		if (pick == -1) {
+			ft_putendl_fd("Invalid choice", STDOUT_FILENO);
+			continue;
 		}
+		pick_items(ds, pick);
+		break;
 	}
 }
 
@@ -41,15 +41,9 @@ static int check_input(char *line)
 	int res = 0;
 
 	if (ft_strlen(line) != 1)
-	{
-		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 		return (-1);
-	}
 	res = *line - '0';
 	if (!(1 <= res && res <= 3))
-	{
-		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 		return (-1);
-	}
 	return (res);
 }
