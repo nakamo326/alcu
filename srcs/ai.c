@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <aicu.h>
+#include "alcu.h"
+#include "libft.h"
 
 static int	solver(t_data *ds);
 
@@ -20,9 +21,9 @@ void	ai(t_data *ds)
 	pick_items(ds, pick);
 
 	char pick_c = pick + '0';
-	ft_putstr("AI took ");
+	ft_putendl_fd("AI took ", STDOUT_FILENO);
 	write(1, &pick_c, 1);
-	ft_putstr("\n");
+	ft_putendl_fd("", STDOUT_FILENO);
 	return ;
 }
 

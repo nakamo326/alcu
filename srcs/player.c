@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <aicu.h>
+#include "alcu.h"
+#include "libft.h"
 
 static int check_input(char *line);
 
@@ -21,8 +22,8 @@ void	player(t_data *ds)
 
 	while (1)
 	{
-		ft_putstr("Please choose between 1 and 3 items\n");
-		line = get_next_line(0);
+		ft_putendl_fd("Please choose between 1 and 3 items", STDOUT_FILENO);
+		// line = get_next_line(STDIN);
 		pick = check_input(line);
 		free(line);
 
@@ -40,13 +41,13 @@ static int check_input(char *line)
 
 	if (ft_strlen(line) != 2)
 	{
-		ft_putstr("Invalid choice\n");
+		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 		return (-1);
 	}
 	res = *line - '0';
 	if (!(1 <= res && res <= 3))
 	{
-		ft_putstr("Invalid choice\n");
+		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 		return (-1);
 	}
 	return (res);

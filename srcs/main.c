@@ -25,7 +25,9 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("usage: ./alcu [board_file]", STDERR_FILENO);
 		return 1;
 	}
-	ds.map = parse_map(input_fd);
+	if (!parse_map(&ds, input_fd)) {
+		return false;
+	}
 	if (ds.map == NULL){
 		ft_putstr("Error\n");
 		return 1;

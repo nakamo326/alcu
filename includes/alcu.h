@@ -27,7 +27,7 @@ typedef struct s_data
 	int	*map;
 }	t_data;
 
-int		*parse_map(int input_fd);
+bool	parse_map(t_data *ds, int input_fd);
 
 void	start_game(t_data *ds);
 void	ai(t_data *ds);
