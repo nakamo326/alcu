@@ -46,7 +46,7 @@ void	start_game(t_data *ds)
 			break ;
 		}
 	}
-	get_next_line(-1, NULL);
+	free_gnl_buf();
 }
 
 static void	print_map(t_data *ds)

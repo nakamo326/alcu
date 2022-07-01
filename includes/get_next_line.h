@@ -14,5 +14,6 @@
 #endif
 
 int get_next_line(int fd, char **line);
+void free_gnl_buf(void);
 
 #endif /* INCLUDES_GET_NEXT_LINE */

@@ -52,6 +52,7 @@ static t_list*	raed_map(int input_fd)
 				return NULL;
 			}
 			free(line);
+			free_gnl_buf();
 			break;
 		}
 		if (res == SUCCESS) {
