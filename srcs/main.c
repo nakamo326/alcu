@@ -1,3 +1,6 @@
+#include <fcntl.h>
+
+
 #include "board.h"
 #include "libft.h"
 
@@ -8,10 +11,14 @@ int main(int argc, char** argv) {
 	switch (argc)
 	{
 	case 1:
-		input_fd = 1;
+		input_fd = STDIN_FILENO;
 		break;
 	case 2:
-		// input_fd = open_board_file(argv[1]);
+		input_fd = open(argv[1], O_RDONLY);
+		if (input_fd == -1) {
+			ft_putendl_fd("open map file error.", STDERR_FILENO);
+			return 1;
+		}
 		break;
 	default:
 		ft_putendl_fd("usage: ./alcu [board_file]", STDERR_FILENO);
