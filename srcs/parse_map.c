@@ -37,11 +37,11 @@ static t_list*	raed_map(int input_fd)
 {
 	t_list *head = NULL;
 	char	*line = NULL;
-	int		line_num = 0;
 
 	while (1)
 	{
 		int res = get_next_line(input_fd, &line);
+		printf("line: %s\n", line);
 		if (res == ERROR) {
 			ft_lstclear(&head, free);
 			return NULL;
@@ -50,15 +50,13 @@ static t_list*	raed_map(int input_fd)
 			if (line[0] != '\0') {
 				t_list* new = ft_lstnew(line);
 				ft_lstadd_back(&head, new);
-				line_num++;
 			}
+			free(line);
 			break;
 		}
 		if (res == SUCCESS) {
-			printf("line: %s\n", line);
 			t_list* new = ft_lstnew(line);
 			ft_lstadd_back(&head, new);
-			line_num++;
 		}
 	}
 	return head;
@@ -67,6 +65,7 @@ static t_list*	raed_map(int input_fd)
 static int*	convert_map(t_list* line_list)
 {
 	int line_num = ft_lstsize(line_list);
+	printf("%d\n", line_num);
 	int *map = malloc(sizeof(int) * (line_num - 1));
 	t_list* list_ptr = line_list;
 	for (int i = 0; list_ptr != NULL; i++)
