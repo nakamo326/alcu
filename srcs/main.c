@@ -1,6 +1,5 @@
 #include <fcntl.h>
 
-
 #include "alcu.h"
 #include "libft.h"
 
@@ -28,7 +27,8 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
-	start_game(&ds);
+	// start_game(&ds);
+	puts("=============");
 	free(ds.map);
 	return 0;
 }

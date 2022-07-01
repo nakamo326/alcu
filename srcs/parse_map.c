@@ -46,6 +46,11 @@ static t_list*	raed_map(int input_fd)
 			return NULL;
 		}
 		if (res == END) {
+			if (line[0] != '\0') {
+				ft_lstclear(&head, free);
+				free(line);
+				return NULL;
+			}
 			free(line);
 			break;
 		}
@@ -63,10 +68,10 @@ static t_list*	raed_map(int input_fd)
 
 void	convert_map(t_data *ds, t_list *line_list)
 {
-	ds->index = ft_lstsize(line_list);
-	printf("%d\n", ds->index);
-	int *map = malloc(sizeof(int) * ds->index);
-	t_list* list_ptr = line_list;
+	int		line_num = ft_lstsize(line_list);
+	int		*map = malloc(sizeof(int) * line_num);
+	t_list*	list_ptr = line_list;
+
 	for (int i = 0; list_ptr != NULL; i++)
 	{
 		int num = map_atoi(list_ptr->content);
@@ -78,6 +83,7 @@ void	convert_map(t_data *ds, t_list *line_list)
 		list_ptr = list_ptr->next;
 	}
 	ds->map = map;
+	ds->index = line_num;
 }
 
 bool	parse_map(t_data *ds, int input_fd)

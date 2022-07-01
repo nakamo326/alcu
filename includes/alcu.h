@@ -20,7 +20,7 @@
 
 # include "get_next_line.h"
 
-# include <stdio.h>//
+# include <stdio.h>
 
 typedef struct s_data
 {
