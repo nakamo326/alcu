@@ -1,12 +1,13 @@
 #include <fcntl.h>
 
 
-#include "board.h"
+#include "alcu.h"
 #include "libft.h"
+#include "board.h"
 
 int main(int argc, char** argv) {
-	t_board*	board;
-	int			input_fd;
+	t_data	ds;
+	int		input_fd;
 
 	switch (argc)
 	{
@@ -24,11 +25,12 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("usage: ./alcu [board_file]", STDERR_FILENO);
 		return 1;
 	}
-	// board = init_board(input_fd);
-	// start_game(board);
-
-	(void)board;
-	(void)input_fd;
-	(void)argv;
+	ds.map = parse_map(input_fd);
+	if (ds.map == NULL){
+		ft_putstr("Error\n");
+		return 1;
+	}
+	start_game(&ds);
+	free(ds.map);
 	return 0;
 }
