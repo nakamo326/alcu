@@ -69,9 +69,10 @@ static t_list*	raed_map(int input_fd)
 void	convert_map(t_data *ds, t_list *line_list)
 {
 	int		line_num = ft_lstsize(line_list);
-	int		*map = malloc(sizeof(int) * line_num);
+	int		*map = malloc(sizeof(int) * (line_num + 1));
+	
+	map[line_num] = 0;
 	t_list*	list_ptr = line_list;
-
 	for (int i = 0; list_ptr != NULL; i++)
 	{
 		int num = map_atoi(list_ptr->content);
