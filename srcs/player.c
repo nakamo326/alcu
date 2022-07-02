@@ -51,6 +51,7 @@ void	pick_item_player(t_game *game)
 			break;
 		}
 		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
+		print_map(game);
 	}
 	pick_items(game, pick);
 }
