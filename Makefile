@@ -19,7 +19,7 @@ all: $(NAME)
 -include $(deps)
 
 $(NAME): $(objs)
-	@$(CC) $(CFLAGS) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) $^ -o $(NAME) -lcurses
 	@echo -e "flags  : $(ylw)$(CFLAGS)$(nc)\nbuild  : $(grn)$^$(nc)\n=> $(blu)$@$(nc)" 
 
 $(objdir)/%.o: $(srcdir)/%.c
@@ -28,9 +28,6 @@ $(objdir)/%.o: $(srcdir)/%.c
 	@echo -e "compile: $(mgn)$<$(nc)\
 	$$(yes ' ' | head -n $$(expr $(align) - $$((`echo $< | wc -m` - 1))) | tr -d '\n') -> \
 	$(grn)$@$(nc)"
-
-bonus: CFLAGS = -Wall -Werror -Wextra -MMD -MP -I$(includes) -g -DBONUS=1
-bonus: re
 
 clean:
 	$(RM) $(objs) $(deps)

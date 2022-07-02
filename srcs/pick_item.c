@@ -2,7 +2,7 @@
 
 void	pick_items(t_game *game, int pick)
 {
-	debug_print(game);
+	// debug_print(game);
 	int i = game->index;
 	if (game->heap[i].num >= pick) {
 		game->heap[i].num -= pick;
