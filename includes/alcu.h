@@ -18,10 +18,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# ifndef BONUS
-#  define BONUS 0
-# endif
-
 # include <stdio.h>
 
 typedef enum e_mode {
