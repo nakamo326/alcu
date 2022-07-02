@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ai.c                                               :+:      :+:    :+:   */
+/*   init_mode.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 18:54:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:32:50 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/02 13:34:28 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/02 13:40:18 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alcu.h"
-#include "libft.h"
 
-static int	solver(t_game *game);
-
-void	pick_item_ai(t_game *game)
+void	init_mode(t_game *game)
 {
-	int pick = solver(game);
-	pick_items(game, pick);
-
-	char pick_c = pick + '0';
-	ft_putendl_fd("AI took ", STDOUT_FILENO);
-	write(1, &pick_c, 1);
-	ft_putendl_fd("", STDOUT_FILENO);
-	return ;
-}
-
-static int	solver(t_game *game)
-{
-	
-	return (1);
+	int i = 1;
+	while (game->heap[i].num != 0)
+	{
+		if (game->heap[i - 1].num % 4 == 1)
+			game->heap[i].mode = LOSE;
+		else
+			game->heap[i].mode = WIN;
+		i++;
+	}
 }

@@ -27,6 +27,7 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
+	init_mode(&game);
 	start_game(&game);
 	free(game.heap);
 	return 0;

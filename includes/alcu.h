@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 12:10:05 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:17:26 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:40:49 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void debug_print(t_game *game);
 bool	parse_map(t_game *game, int input_fd);
 void	print_map(t_game *game);
 
+void	init_mode(t_game *game);
 void	start_game(t_game *game);
 void	pick_item_ai(t_game *game);
 void	pick_item_player(t_game *game);
