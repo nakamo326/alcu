@@ -28,7 +28,11 @@ int main(int argc, char** argv) {
 		return 1;
 	}
 	init_mode(&game);
-	start_game(&game);
+	if (BONUS) {
+		start_bonus_game(&game);
+	} else {
+		start_game(&game);
+	}
 	free(game.heap);
 	return 0;
 }
