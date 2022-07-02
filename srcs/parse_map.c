@@ -46,7 +46,7 @@ static t_list*	raed_map(int input_fd)
 			return NULL;
 		}
 		if (res == END) {
-			if (line[0] != '\0') {
+			if (line != NULL && line[0] != '\0') {
 				ft_lstclear(&head, free);
 				free(line);
 				return NULL;
