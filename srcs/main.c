@@ -4,7 +4,7 @@
 #include "libft.h"
 
 int main(int argc, char** argv) {
-	t_data	ds = {NULL, 0, false};
+	t_game	ds = {NULL, 0, false};
 	int		input_fd;
 
 	switch (argc)

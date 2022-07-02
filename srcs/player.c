@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-static int check_input(t_data *ds, char *line)
+static int check_input(t_game *game, char *line)
 {
 	int res = 0;
 
@@ -23,12 +23,12 @@ static int check_input(t_data *ds, char *line)
 	res = *line - '0';
 	if (!(1 <= res && res <= 3))
 		return (-1);
-	if (ds->map[ds->index] < res)
+	if (game->map[game->index] < res)
 		return (-1);
 	return (res);
 }
 
-void	player(t_data *ds)
+void	player(t_game *game)
 {
 	char	*line;
 	int		pick;
@@ -37,12 +37,12 @@ void	player(t_data *ds)
 	{
 		ft_putendl_fd("Please choose between 1 and 3 items", STDOUT_FILENO);
 		get_next_line(STDIN_FILENO, &line);
-		pick = check_input(ds, line);
+		pick = check_input(game, line);
 		free(line);
 		if (pick != -1) {
 			break;
 		}
 		ft_putendl_fd("Invalid choice", STDOUT_FILENO);
 	}
-	pick_items(ds, pick);
+	pick_items(game, pick);
 }

@@ -67,7 +67,7 @@ static t_list*	raed_map(int input_fd)
 	return head;
 }
 
-void	create_map(t_data *ds, t_list *line_list)
+void	create_map(t_game *game, t_list *line_list)
 {
 	int		line_num = ft_lstsize(line_list);
 	int		*map = malloc(sizeof(int) * (line_num + 1));
@@ -84,19 +84,19 @@ void	create_map(t_data *ds, t_list *line_list)
 		map[i] = num;
 		list_ptr = list_ptr->next;
 	}
-	ds->map = map;
-	ds->index = line_num - 1;
+	game->map = map;
+	game->index = line_num - 1;
 }
 
-bool	parse_map(t_data *ds, int input_fd)
+bool	parse_map(t_game *game, int input_fd)
 {
 	t_list* line_list = raed_map(input_fd);
 	if (line_list == NULL) {
 		return false;
 	}
-	create_map(ds, line_list);
+	create_map(game, line_list);
 	ft_lstclear(&line_list, free);
-	if (ds->map == NULL) {
+	if (game->map == NULL) {
 		return false;
 	}
 	return true;

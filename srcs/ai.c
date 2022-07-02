@@ -13,12 +13,12 @@
 #include "alcu.h"
 #include "libft.h"
 
-static int	solver(t_data *ds);
+static int	solver(t_game *game);
 
-void	ai(t_data *ds)
+void	ai(t_game *game)
 {
-	int pick = solver(ds);
-	pick_items(ds, pick);
+	int pick = solver(game);
+	pick_items(game, pick);
 
 	char pick_c = pick + '0';
 	ft_putendl_fd("AI took ", STDOUT_FILENO);
@@ -27,8 +27,8 @@ void	ai(t_data *ds)
 	return ;
 }
 
-static int	solver(t_data *ds)
+static int	solver(t_game *game)
 {
-	(void)ds;
+	(void)game;
 	return (1);
 }

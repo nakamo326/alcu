@@ -1,14 +1,14 @@
 #include "alcu.h"
 
-void	pick_items(t_data *ds, int pick)
+void	pick_items(t_game *game, int pick)
 {
-	debug_print(ds);
-	int i = ds->index;
-	if (ds->map[i] >= pick) {
-		ds->map[i] -= pick;
+	debug_print(game);
+	int i = game->index;
+	if (game->map[i] >= pick) {
+		game->map[i] -= pick;
 	} else {
-		ds->map[i] = 0;
+		game->map[i] = 0;
 	}
-	if (ds->index != 0 && ds->map[i] == 0)
-		ds->index--;
+	if (game->index != 0 && game->map[i] == 0)
+		game->index--;
 }

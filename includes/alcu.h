@@ -22,22 +22,22 @@
 
 # include <stdio.h>
 
-typedef struct s_data
+typedef struct s_game
 {
 	int		*map;
 	int		index;
 	bool	player_turn;
-}	t_data;
+}	t_game;
 
-void debug_print(t_data *ds);
+void debug_print(t_game *game);
 
-bool	parse_map(t_data *ds, int input_fd);
-void	print_map(t_data *ds);
+bool	parse_map(t_game *game, int input_fd);
+void	print_map(t_game *game);
 
-void	start_game(t_data *ds);
-void	ai(t_data *ds);
-void	player(t_data *ds);
+void	start_game(t_game *game);
+void	ai(t_game *game);
+void	player(t_game *game);
 
-void	pick_items(t_data *ds, int pick);
+void	pick_items(t_game *game, int pick);
 
 #endif
