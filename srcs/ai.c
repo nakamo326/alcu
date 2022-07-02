@@ -6,14 +6,36 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:54:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/02 13:32:50 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:12:28 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alcu.h"
 #include "libft.h"
 
-static int	solver(t_game *game);
+static int pick_to_lose(const t_heap *heap)
+{
+	return (heap->num % 4);
+}
+
+static int pick_to_win(const t_heap *heap)
+{
+	if ((heap->num - 3) % 4 == 1)
+		return (3);
+	if ((heap->num - 2) % 4 == 1)
+		return (2);
+	return (1);
+}
+
+static int	solver(t_game *game)
+{
+	int pick = 0;
+	if (game->heap[game->index].mode == LOSE)
+		pick = pick_to_lose(&game->heap[game->index]);
+	else
+		pick = pick_to_win(&game->heap[game->index]);
+	return (pick);
+}
 
 void	pick_item_ai(t_game *game)
 {
@@ -25,10 +47,4 @@ void	pick_item_ai(t_game *game)
 	write(1, &pick_c, 1);
 	ft_putendl_fd("", STDOUT_FILENO);
 	return ;
-}
-
-static int	solver(t_game *game)
-{
-	
-	return (1);
 }
