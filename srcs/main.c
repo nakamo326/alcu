@@ -1,12 +1,10 @@
 #include <fcntl.h>
 
-
 #include "alcu.h"
 #include "libft.h"
-#include "board.h"
 
 int main(int argc, char** argv) {
-	t_data	ds;
+	t_game	ds = {NULL, 0, false};
 	int		input_fd;
 
 	switch (argc)
@@ -25,9 +23,8 @@ int main(int argc, char** argv) {
 		ft_putendl_fd("usage: ./alcu [board_file]", STDERR_FILENO);
 		return 1;
 	}
-	ds.map = parse_map(input_fd);
-	if (ds.map == NULL){
-		ft_putstr("Error\n");
+	if (!parse_map(&ds, input_fd)) {
+		ft_putendl_fd("ERROR", STDERR_FILENO);
 		return 1;
 	}
 	start_game(&ds);

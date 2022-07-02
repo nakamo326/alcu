@@ -86,8 +86,10 @@ int	get_next_line(int fd, char **line)
 	static char	*buf = NULL;
 	ssize_t		ret;
 
-	if (fd < 0 || !line || BUFFER_SIZE <= 0 || read(fd, buf, 0) < 0)
+	if (!line || BUFFER_SIZE <= 0) {
+		safe_free(&buf);
 		return (ERROR);
+	}
 	*line = NULL;
 	ret = process_buf(line, &buf);
 	if (ret == CONTINUE)
@@ -98,8 +100,8 @@ int	get_next_line(int fd, char **line)
 			return (ERROR);
 		ret = read_line(fd, line, &buf);
 	}
-	if (ret == ERROR || ret == SUCCESS)
-		return (ret);
+	if (ret == SUCCESS)
+		return SUCCESS;
 	safe_free(&buf);
 	return (END);
 }

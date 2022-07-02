@@ -20,19 +20,24 @@
 
 # include "get_next_line.h"
 
-# include <stdio.h>//
+# include <stdio.h>
 
-typedef struct s_data
+typedef struct s_game
 {
-	int	*map;
-}	t_data;
+	int		*map;
+	int		index;
+	bool	player_turn;
+}	t_game;
 
-int		*parse_map(int input_fd);
+void debug_print(t_game *game);
 
-void	start_game(t_data *ds);
-void	ai(t_data *ds);
-void	player(t_data *ds);
+bool	parse_map(t_game *game, int input_fd);
+void	print_map(t_game *game);
 
-void	pick_items(t_data *ds, int pick);
+void	start_game(t_game *game);
+void	pick_item_ai(t_game *game);
+void	pick_item_player(t_game *game);
+
+void	pick_items(t_game *game, int pick);
 
 #endif

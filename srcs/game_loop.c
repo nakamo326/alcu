@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ai.c                                               :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 18:54:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/01 20:03:13 by tharaguc         ###   ########.fr       */
+/*   Created: 2022/07/01 18:04:55 by tharaguc          #+#    #+#             */
+/*   Updated: 2022/07/01 20:31:30 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alcu.h"
-#include "libft.h"
+#include "game.h"
+#include "get_next_line.h"
 
-static int	solver(t_game *game);
-
-void	pick_item_ai(t_game *game)
+void	start_game(t_game *game)
 {
-	int pick = solver(game);
-	pick_items(game, pick);
-
-	char pick_c = pick + '0';
-	ft_putendl_fd("AI took ", STDOUT_FILENO);
-	write(1, &pick_c, 1);
-	ft_putendl_fd("", STDOUT_FILENO);
-	return ;
-}
-
-static int	solver(t_game *game)
-{
-	(void)game;
-	return (1);
+	while (!is_game_over(game))
+	{
+		print_map(game);
+		if(game->player_turn) {
+			pick_item_player(game);
+		} else {
+			pick_item_ai(game);
+		}
+		game->player_turn = !game->player_turn;
+	}
+	announce_winner(game);
+	free_gnl_buf();
 }
