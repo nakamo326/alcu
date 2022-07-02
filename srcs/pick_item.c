@@ -1,0 +1,13 @@
+#include "alcu.h"
+
+void	pick_items(t_data *ds, int pick)
+{
+	int i = ds->index;
+	if (ds->map[i] >= pick) {
+		ds->map[i] -= pick;
+	} else {
+		ds->map[i] = 0;
+	}
+	if (ds->index != 0 && ds->map[i] == 0)
+		ds->index--;
+}

@@ -30,6 +30,7 @@ typedef struct s_data
 }	t_data;
 
 bool	parse_map(t_data *ds, int input_fd);
+void	print_map(t_data *ds);
 
 void	start_game(t_data *ds);
 void	ai(t_data *ds);

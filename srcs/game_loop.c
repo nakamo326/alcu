@@ -15,8 +15,6 @@
 #include "get_next_line.h"
 #include "libft.h"
 
-static void	print_map(t_data *ds);
-
 void announce_winner(t_data *ds) {
 	printf("ds->map[0]: %d\n", ds->map[0]);
 	printf("is_player_turn: %d\n", ds->player_turn);
@@ -50,29 +48,4 @@ void	start_game(t_data *ds)
 	}
 	announce_winner(ds);
 	free_gnl_buf();
-}
-
-static void	print_map(t_data *ds)
-{
-	for (int i = 0; ds->map[i] != 0; i++)
-	{
-		for (int j = 0; j < ds->map[i]; j++)
-		{
-			ft_putstr_fd("| ", STDOUT_FILENO);
-		}
-		ft_putendl_fd("", STDOUT_FILENO);
-	}
-}
-
-// validation pick
-void	pick_items(t_data *ds, int pick)
-{
-	int i = ds->index;
-	if (ds->map[i] >= pick) {
-		ds->map[i] -= pick;
-	} else {
-		ds->map[i] = 0;
-	}
-	if (ds->index != 0 && ds->map[i] == 0)
-		ds->index--;
 }
