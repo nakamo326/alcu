@@ -85,7 +85,7 @@ void	create_map(t_data *ds, t_list *line_list)
 		list_ptr = list_ptr->next;
 	}
 	ds->map = map;
-	ds->index = line_num;
+	ds->index = line_num - 1;
 }
 
 bool	parse_map(t_data *ds, int input_fd)

@@ -2,6 +2,7 @@
 
 void	pick_items(t_data *ds, int pick)
 {
+	debug_print(ds);
 	int i = ds->index;
 	if (ds->map[i] >= pick) {
 		ds->map[i] -= pick;
