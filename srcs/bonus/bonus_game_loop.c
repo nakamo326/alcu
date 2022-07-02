@@ -2,16 +2,19 @@
 #include "bonus.h"
 #include "game.h"
 
-#include <curses.h>
+#include <ncurses.h>
 
 void	start_bonus_game(t_game *game)
 {
+	t_window window;
+
 	initscr();
-	curs_set(0);
-	noecho();
+	getmaxyx(stdscr, window.h, window.w);
+	init_window();
+	window.prompt = init_prompt(&window);
+    refresh();
 	while (!is_game_over(game))
 	{
-		// get_input from nsurses
 		int key = getch();
 		if (key == 'c') {
 			break;
