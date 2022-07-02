@@ -18,8 +18,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# include "get_next_line.h"
-
 # include <stdio.h>
 
 typedef enum e_mode {
@@ -48,6 +46,7 @@ void	print_map(t_game *game);
 
 void	init_mode(t_game *game);
 void	start_game(t_game *game);
+int		solver(t_game *game);
 void	pick_item_ai(t_game *game);
 void	pick_item_player(t_game *game);
 

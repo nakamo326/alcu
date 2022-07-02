@@ -19,7 +19,7 @@ all: $(NAME)
 -include $(deps)
 
 $(NAME): $(objs)
-	@$(CC) $(CFLAGS) $^ -o $(NAME)
+	@$(CC) $(CFLAGS) $^ -o $(NAME) -lcurses
 	@echo -e "flags  : $(ylw)$(CFLAGS)$(nc)\nbuild  : $(grn)$^$(nc)\n=> $(blu)$@$(nc)" 
 
 $(objdir)/%.o: $(srcdir)/%.c

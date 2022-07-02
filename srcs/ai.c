@@ -31,7 +31,7 @@ static int pick_to_win(const t_heap *heap)
 	return (3);
 }
 
-static int	solver(t_game *game)
+int	solver(t_game *game)
 {
 	int pick = 0;
 	if (game->heap[game->index].mode == LOSE)
