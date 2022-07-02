@@ -24,8 +24,9 @@
 
 typedef struct s_data
 {
-	int	*map;
-	int index;
+	int		*map;
+	int		index;
+	bool	player_turn;
 }	t_data;
 
 bool	parse_map(t_data *ds, int input_fd);
