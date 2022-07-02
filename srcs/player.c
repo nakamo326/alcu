@@ -36,7 +36,7 @@ void	pick_item_player(t_game *game)
 	while (1)
 	{
 		ft_putendl_fd("Please choose between 1 and 3 items", STDOUT_FILENO);
-		res = get_next_line(STDOUT_FILENO, &line);
+		res = get_next_line(STDERR_FILENO, &line);
 		// res = get_next_line(STDIN_FILENO, &line);
 		if (res == ERROR) {
 			free(line);
