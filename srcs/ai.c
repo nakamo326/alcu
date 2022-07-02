@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:54:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/02 14:12:28 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:17:29 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 static int pick_to_lose(const t_heap *heap)
 {
+	if (heap->num % 4 == 0)
+		return (1);
 	return (heap->num % 4);
 }
 
