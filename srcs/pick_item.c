@@ -4,11 +4,11 @@ void	pick_items(t_game *game, int pick)
 {
 	debug_print(game);
 	int i = game->index;
-	if (game->map[i] >= pick) {
-		game->map[i] -= pick;
+	if (game->heap[i].num >= pick) {
+		game->heap[i].num -= pick;
 	} else {
-		game->map[i] = 0;
+		game->heap[i].num = 0;
 	}
-	if (game->index != 0 && game->map[i] == 0)
+	if (game->index != 0 && game->heap[i].num == 0)
 		game->index--;
 }

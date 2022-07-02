@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:56:06 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/01 19:59:26 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:25:40 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int check_input(t_game *game, char *line)
 	res = *line - '0';
 	if (!(1 <= res && res <= 3))
 		return (-1);
-	if (game->map[game->index] < res)
+	if (game->heap[game->index].num < res)
 		return (-1);
 	return (res);
 }
