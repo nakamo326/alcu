@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aicu.h                                             :+:      :+:    :+:   */
+/*   alcu.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 12:10:05 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/01 19:43:51 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:17:26 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,21 @@
 
 # include <stdio.h>
 
+typedef enum e_mode {
+	WIN,
+	LOSE,
+} t_mode;
+
+typedef struct s_heap
+{
+	int		num;
+	t_mode	mode;
+} t_heap;
+
+
 typedef struct s_game
 {
-	int		*map;
+	t_heap	*heap;
 	int		index;
 	bool	player_turn;
 }	t_game;

@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 12:29:40 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/01 20:22:38 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 13:26:16 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,22 @@ static t_list*	raed_map(int input_fd)
 void	create_map(t_game *game, t_list *line_list)
 {
 	int		line_num = ft_lstsize(line_list);
-	int		*map = malloc(sizeof(int) * (line_num + 1));
+	t_heap	*heap = malloc(sizeof(t_heap) * (line_num + 1));
 	
-	map[line_num] = 0;
+	heap[line_num].num = 0;
 	t_list*	list_ptr = line_list;
 	for (int i = 0; list_ptr != NULL; i++)
 	{
 		int num = map_atoi(list_ptr->content);
 		if (num == -1) {
-			free(map);
+			free(heap);
 			return;
 		}
-		map[i] = num;
+		heap[i].num = num;
+		heap[i].mode = WIN;
 		list_ptr = list_ptr->next;
 	}
-	game->map = map;
+	game->heap = heap;
 	game->index = line_num - 1;
 }
 
@@ -96,7 +97,7 @@ bool	parse_map(t_game *game, int input_fd)
 	}
 	create_map(game, line_list);
 	ft_lstclear(&line_list, free);
-	if (game->map == NULL) {
+	if (game->heap == NULL) {
 		return false;
 	}
 	return true;
