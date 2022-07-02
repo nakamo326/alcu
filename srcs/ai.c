@@ -6,7 +6,7 @@
 /*   By: tharaguc <tharaguc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 18:54:41 by tharaguc          #+#    #+#             */
-/*   Updated: 2022/07/02 14:17:29 by tharaguc         ###   ########.fr       */
+/*   Updated: 2022/07/02 14:27:49 by tharaguc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static int pick_to_win(const t_heap *heap)
 		return (3);
 	if ((heap->num - 2) % 4 == 1)
 		return (2);
-	return (1);
+	if ((heap->num - 1) % 4 == 1)
+		return (1);
+	return (3);
 }
 
 static int	solver(t_game *game)
