@@ -35,8 +35,8 @@ bool	parse_map(t_game *game, int input_fd);
 void	print_map(t_game *game);
 
 void	start_game(t_game *game);
-void	ai(t_game *game);
-void	player(t_game *game);
+void	pick_item_ai(t_game *game);
+void	pick_item_player(t_game *game);
 
 void	pick_items(t_game *game, int pick);
 

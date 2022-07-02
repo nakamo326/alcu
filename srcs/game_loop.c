@@ -20,11 +20,9 @@ void	start_game(t_game *game)
 	{
 		print_map(game);
 		if(game->player_turn) {
-			player(game);
-			// pick_item_player(game);
+			pick_item_player(game);
 		} else {
-			ai(game);
-			// pick_item_ai(game);
+			pick_item_ai(game);
 		}
 		game->player_turn = !game->player_turn;
 	}

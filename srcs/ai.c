@@ -15,7 +15,7 @@
 
 static int	solver(t_game *game);
 
-void	ai(t_game *game)
+void	pick_item_ai(t_game *game)
 {
 	int pick = solver(game);
 	pick_items(game, pick);

@@ -28,15 +28,23 @@ static int check_input(t_game *game, char *line)
 	return (res);
 }
 
-void	player(t_game *game)
+void	pick_item_player(t_game *game)
 {
 	char	*line;
-	int		pick;
+	int		res, pick;
 
 	while (1)
 	{
 		ft_putendl_fd("Please choose between 1 and 3 items", STDOUT_FILENO);
-		get_next_line(STDIN_FILENO, &line);
+		res = get_next_line(STDIN_FILENO, &line);
+		if (res == ERROR) {
+			free(line);
+			return;
+		}
+		if (res == END) {
+			free(line);
+			continue;
+		}
 		pick = check_input(game, line);
 		free(line);
 		if (pick != -1) {
