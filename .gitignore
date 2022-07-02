@@ -38,3 +38,6 @@ ref/*
 
 # VScode settings
 .vscode
+
+# test
+*_test/*
