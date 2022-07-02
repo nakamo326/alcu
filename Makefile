@@ -29,6 +29,9 @@ $(objdir)/%.o: $(srcdir)/%.c
 	$$(yes ' ' | head -n $$(expr $(align) - $$((`echo $< | wc -m` - 1))) | tr -d '\n') -> \
 	$(grn)$@$(nc)"
 
+bonus: CFLAGS = -Wall -Werror -Wextra -MMD -MP -I$(includes) -g -DBONUS=1
+bonus: re
+
 clean:
 	$(RM) $(objs) $(deps)
 	$(RM) -r $(objdir)

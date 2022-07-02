@@ -18,7 +18,9 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# include "get_next_line.h"
+# ifndef BONUS
+#  define BONUS 0
+# endif
 
 # include <stdio.h>
 
