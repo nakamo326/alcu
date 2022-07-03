@@ -19,9 +19,10 @@ void	print_screen(t_game *game, WINDOW *screen)
 }
 
 static void print_item_pick_message(t_window window, int pick) {
-	move(window.h - 2, 0);
+	// move(window.h - 2, 1);
 	wattron(window.prompt,COLOR_PAIR(3));
-	printw("AI took %d. it's your turn!", pick);
+	mvprintw(window.h - 2, 1, "AI took %d. it's your turn!", pick);
+	mvwprintw(window.prompt, window.h - 2, 1, "AI took %d. it's your turn!", pick);
 	wattroff(window.prompt,COLOR_PAIR(3));
 }
 
@@ -33,11 +34,11 @@ void	start_bonus_game(t_game *game)
 	getmaxyx(stdscr, window.h, window.w);
 	init_window();
 	window.prompt = init_prompt(&window);
-	print_screen(game, window.game_screen);
-	refresh();
 	while (!is_game_over(game))
 	{
-		char key = getch();
+		print_screen(game, window.game_screen);
+		refresh();
+		int key = getch();
 		if (key == 'c') {
 			break;
 		}
@@ -47,13 +48,13 @@ void	start_bonus_game(t_game *game)
 		if(game->player_turn && pick != 0) {
 			pick_items(game, pick);
 			game->player_turn = !game->player_turn;
-		} else if (!game->player_turn) {
+			continue;
+		}
+		if (!game->player_turn) {
 			pick = solver(game);
 			pick_items(game, pick);
 			print_item_pick_message(window, pick);
 		}
-		print_screen(game, window.game_screen);
-		refresh();
 	}
 	endwin();
 	// announce_winner(game);

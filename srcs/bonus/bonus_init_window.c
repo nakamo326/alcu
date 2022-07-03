@@ -15,6 +15,6 @@ WINDOW* init_prompt(t_window* window) {
 	wbkgd(prompt,COLOR_PAIR(2));
 	wattron(prompt,COLOR_PAIR(3));
 	waddstr(prompt,"PROMPT");
-    wattroff(prompt,COLOR_PAIR(3));
+	wattroff(prompt,COLOR_PAIR(3));
 	return prompt;
 }
