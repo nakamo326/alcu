@@ -18,7 +18,7 @@ void 	print_view_screen(t_game *game, t_image **images, WINDOW *game_screen, int
 		print_img(game_screen, images[i], game->heap[view_index - 2 + i].num, h_index, center);
 		h_index += images[i]->img_h;
 	}
-	if (view_index + 1 > game->index) {
+	if (view_index + 1 <= game->index) {
 		print_img(game_screen, images[1], game->heap[view_index + 1].num, h_index, center);
 	}
 	wrefresh(game_screen);
