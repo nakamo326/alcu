@@ -2,22 +2,6 @@
 #include "bonus.h"
 #include "game.h"
 
-void	print_screen(t_game *game, WINDOW *screen)
-{
-	werase(screen);
-	mvwaddstr(screen, 0, 0, "SCREEN");
-	wmove(screen, 2,1);
-	for (int i = 0; game->heap[i].num != 0; i++)
-	{
-		for (int j = 0; j < game->heap[i].num; j++)
-		{
-			wprintw(screen, "| ");
-		}
-		wmove(screen, 2 + i + 1, 1);
-	}
-	wrefresh(screen);
-}
-
 static void print_item_pick_message(t_window *window, int pick) {
 	werase(window->prompt);
 	mvwaddstr(window->prompt, 0, 0, "PROMPT");
@@ -63,6 +47,9 @@ void	start_bonus_game(t_game *game)
 			pick_items(game, pick);
 			game->player_turn = !game->player_turn;
 			if (is_game_over(game)) {
+				print_screen(game, window.game_screen);
+				print_prompt_winner(game, &window);
+				getch();
 				break;
 			}
 		}
@@ -73,8 +60,5 @@ void	start_bonus_game(t_game *game)
 			game->player_turn = !game->player_turn;
 		}
 	}
-	print_screen(game, window.game_screen);
-	print_prompt_winner(game, &window);
-	getch();
 	endwin();
 }

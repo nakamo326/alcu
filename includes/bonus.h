@@ -17,4 +17,6 @@ void	init_window(t_window *window);
 WINDOW* init_prompt(t_window *window);
 WINDOW* init_game_screen(t_window *window);
 
+void	print_screen(t_game *game, WINDOW *game_screen);
+
 #endif /* INCLUDES_BONUS_H */
