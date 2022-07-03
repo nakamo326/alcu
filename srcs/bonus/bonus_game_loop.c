@@ -29,6 +29,7 @@ void	start_bonus_game(t_game *game)
 	t_window window;
 
 	init_window(&window);
+	mvwaddstr(window.prompt, 0, 0, "PROMPT");
 	mvwaddstr(window.prompt, 1, 1, "Press any key to start game.");
 	while (!is_game_over(game))
 	{
@@ -47,9 +48,6 @@ void	start_bonus_game(t_game *game)
 			pick_items(game, pick);
 			game->player_turn = !game->player_turn;
 			if (is_game_over(game)) {
-				print_screen(game, window.game_screen);
-				print_prompt_winner(game, &window);
-				getch();
 				break;
 			}
 		}
@@ -59,6 +57,11 @@ void	start_bonus_game(t_game *game)
 			print_item_pick_message(&window, pick);
 			game->player_turn = !game->player_turn;
 		}
+	}
+	if (is_game_over(game)) {
+		print_screen(game, window.game_screen);
+		print_prompt_winner(game, &window);
+		getch();
 	}
 	endwin();
 }
