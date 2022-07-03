@@ -13,7 +13,8 @@ typedef struct s_window {
 } t_window;
 
 void	start_bonus_game(t_game *game);
-void	init_window();
-WINDOW* init_prompt(t_window* window);
+void	init_window(t_window *window);
+WINDOW* init_prompt(t_window *window);
+WINDOW* init_game_screen(t_window *window);
 
 #endif /* INCLUDES_BONUS_H */
