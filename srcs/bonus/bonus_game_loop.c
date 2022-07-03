@@ -28,8 +28,11 @@ static void print_prompt_winner(t_game *game, t_window *window) {
 
 void	start_bonus_game(t_game *game)
 {
-	t_window window;
-	t_image *images[3] = {NULL, NULL, NULL};
+	bool		is_game_start = false;
+	bool		is_view_mode = false;
+	int			view_index = -1;
+	t_window	window;
+	t_image		*images[3] = {NULL, NULL, NULL};
 
 	if (!init_window(&window)){
 		return;
@@ -41,18 +44,43 @@ void	start_bonus_game(t_game *game)
 		return;
 	}
 	mvwaddstr(window.prompt, 0, 0, "PROMPT");
-	mvwaddstr(window.prompt, 1, 1, "Press any key to start game.");
+	mvwaddstr(window.prompt, 1, 1, "Press space key to start game.");
 	while (!is_game_over(game))
 	{
-		print_screen(game, images, window.game_screen);
+		if (is_view_mode) {
+			print_view_screen(game, images, window.game_screen, view_index);
+		} else {
+			print_screen(game, images, window.game_screen);
+		}
 		refresh();
-		echo();
+		int pick = 0;
 		int key = getch();
+		mvwprintw(window.prompt, 2, 1, "got key input: %c" , (char)key);
+		wrefresh(window.prompt);
 		if (key == 'c') {
 			break;
 		}
-		noecho();
-		int pick = 0;
+		if (key == ' ') {
+			is_game_start = true;
+		}
+		if (!is_game_start) {
+			continue;
+		}
+		if (key == 'v') {
+			is_view_mode = !is_view_mode;
+			view_index = game->index;
+			continue;
+		}
+		if (is_view_mode && key == 'w') {
+			if (view_index != 0)
+				view_index--;
+			continue;
+		}
+		if (is_view_mode && key == 's') {
+			if (view_index < game->index)
+				view_index++;
+			continue;
+		}
 		if ('1' <= key && key <= '3')
 			pick = key - '0';
 		if(game->player_turn && pick != 0) {

@@ -18,9 +18,10 @@ typedef struct s_window {
 
 void	start_bonus_game(t_game *game);
 bool	init_window(t_window *window);
-WINDOW* init_prompt(t_window *window);
-WINDOW* init_game_screen(t_window *window);
+WINDOW*	init_prompt(t_window *window);
+WINDOW*	init_game_screen(t_window *window);
 
 void	print_screen(t_game *game, t_image **images, WINDOW *game_screen);
+void 	print_view_screen(t_game *game, t_image **images, WINDOW *game_screen, int view_index);
 
 #endif /* INCLUDES_BONUS_H */

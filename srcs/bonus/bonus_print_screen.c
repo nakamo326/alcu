@@ -8,7 +8,7 @@ void	print_screen(t_game *game, t_image **images, WINDOW *game_screen)
 	int center = SCREEN_W / 2;
 	
 	werase(game_screen);
-	mvwaddstr(game_screen, 0, 0, "SCREEN");
+	mvwaddstr(game_screen, 0, 0, "GAME");
 
 	// 描画するのは直近3行
 	int h_index = 1;
