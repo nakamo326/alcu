@@ -30,7 +30,7 @@ void	print_screen(t_game *game, WINDOW *game_screen)
 
 	for (int i = 0; game->heap[i].num != 0; i++)
 	{
-		print_img(game_screen, image, game->heap[i].num, 2 + i * 5, center);
+		print_img(game_screen, image, game->heap[i].num, 2 + i * image->img_h, center);
 	}
 	wrefresh(game_screen);
 }

@@ -28,7 +28,9 @@ void	start_bonus_game(t_game *game)
 {
 	t_window window;
 
-	init_window(&window);
+	if (!init_window(&window)){
+		return;
+	}
 	mvwaddstr(window.prompt, 0, 0, "PROMPT");
 	mvwaddstr(window.prompt, 1, 1, "Press any key to start game.");
 	while (!is_game_over(game))
