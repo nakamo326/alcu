@@ -5,15 +5,24 @@
 void	print_screen(t_game *game, WINDOW *screen)
 {
 	(void)screen;
+	// erase();
 	mvprintw(1, 1, "screen\n");
+	move(2,1);
 	for (int i = 0; game->heap[i].num != 0; i++)
 	{
 		for (int j = 0; j < game->heap[i].num; j++)
 		{
 			printw("| ");
 		}
-		printw(" ");
+		move(2 + i, 1);
 	}
+}
+
+static void print_item_pick_message(t_window window, int pick) {
+	move(window.h - 2, 0);
+	wattron(window.prompt,COLOR_PAIR(3));
+	printw("AI took %d. it's your turn!", pick);
+	wattroff(window.prompt,COLOR_PAIR(3));
 }
 
 void	start_bonus_game(t_game *game)
@@ -24,28 +33,27 @@ void	start_bonus_game(t_game *game)
 	getmaxyx(stdscr, window.h, window.w);
 	init_window();
 	window.prompt = init_prompt(&window);
-	char input[10];
-	int pick = 0;
+	print_screen(game, window.game_screen);
+	refresh();
 	while (!is_game_over(game))
 	{
-		int key = getch();
+		char key = getch();
 		if (key == 'c') {
 			break;
 		}
-		// keypad(window.prompt, TRUE);
-		echo();
-		mvscanw(window.h - 1, 10, ">>", &input);
-		mvprintw(window.h - 2, 1, input);
-		refresh();
-		noecho();
-		if(game->player_turn) {
+		int pick = 0;
+		if ('1' <= key && key <= '3')
+			pick = key - '0';
+		if(game->player_turn && pick != 0) {
 			pick_items(game, pick);
-		} else {
+			game->player_turn = !game->player_turn;
+		} else if (!game->player_turn) {
 			pick = solver(game);
 			pick_items(game, pick);
+			print_item_pick_message(window, pick);
 		}
 		print_screen(game, window.game_screen);
-		game->player_turn = !game->player_turn;
+		refresh();
 	}
 	endwin();
 	// announce_winner(game);
