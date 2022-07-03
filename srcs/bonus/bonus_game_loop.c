@@ -34,7 +34,7 @@ void	start_bonus_game(t_game *game)
 	if (!init_window(&window)){
 		return;
 	}
-	if (init_images(images)) {
+	if (!init_images(images)) {
 		endwin();
 		ft_putendl_fd("image malloc error.", STDERR_FILENO);
 		delete_images(images);
@@ -44,7 +44,7 @@ void	start_bonus_game(t_game *game)
 	mvwaddstr(window.prompt, 1, 1, "Press any key to start game.");
 	while (!is_game_over(game))
 	{
-		print_screen(game, window.game_screen);
+		print_screen(game, images, window.game_screen);
 		refresh();
 		echo();
 		int key = getch();
@@ -70,7 +70,7 @@ void	start_bonus_game(t_game *game)
 		}
 	}
 	if (is_game_over(game)) {
-		print_screen(game, window.game_screen);
+		print_screen(game, images, window.game_screen);
 		print_prompt_winner(game, &window);
 		getch();
 	}

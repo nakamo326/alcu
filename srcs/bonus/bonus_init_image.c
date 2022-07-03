@@ -55,6 +55,7 @@ bool init_images(t_image** images) {
 		return false;
 	}
 	images[2] = res;
+	return true;
 }
 
 void delete_image(t_image *image) {

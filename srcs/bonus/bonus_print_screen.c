@@ -15,7 +15,7 @@ static int get_max_heap_num(t_game* game) {
 	return max;
 }
 
-void	print_screen(t_game *game, WINDOW *game_screen)
+void	print_screen(t_game *game, t_image **images, WINDOW *game_screen)
 {
 	// int h, w;
 	// getmaxyx(game_screen, h, w);
@@ -24,14 +24,12 @@ void	print_screen(t_game *game, WINDOW *game_screen)
 	// TODO: max_heap_num * 5 > w;
 	int center = max_heap_num * 5 / 2;
 	
-	t_image *image = init_middle_stick();
 	werase(game_screen);
 	mvwaddstr(game_screen, 0, 0, "SCREEN");
 
 	for (int i = 0; game->heap[i].num != 0; i++)
 	{
-		print_img(game_screen, image, game->heap[i].num, 2 + i * image->img_h, center);
+		print_img(game_screen, images[1], game->heap[i].num, 2 + i * images[1]->img_h, center);
 	}
 	wrefresh(game_screen);
-	delete_image(image);
 }
