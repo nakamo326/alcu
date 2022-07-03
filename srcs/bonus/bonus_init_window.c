@@ -11,7 +11,7 @@ bool init_window(t_window *window) {
 	curs_set(0);
 	noecho();
 	getmaxyx(stdscr, window->h, window->w);
-	if (window->h < 35 || window->w < 80) {
+	if (window->h < SCREEN_H || window->w < SCREEN_W) {
 		endwin();
 		ft_putendl_fd("relaunch alcu with teminal size over 35 x 80.", STDERR_FILENO);
 		return false;

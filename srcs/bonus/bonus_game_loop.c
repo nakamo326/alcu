@@ -1,6 +1,8 @@
 #include "alcu.h"
 #include "bonus.h"
 #include "game.h"
+#include "image.h"
+#include "libft.h"
 
 static void print_item_pick_message(t_window *window, int pick) {
 	werase(window->prompt);
@@ -27,8 +29,15 @@ static void print_prompt_winner(t_game *game, t_window *window) {
 void	start_bonus_game(t_game *game)
 {
 	t_window window;
+	t_image *images[3] = {NULL, NULL, NULL};
 
 	if (!init_window(&window)){
+		return;
+	}
+	if (init_images(images)) {
+		endwin();
+		ft_putendl_fd("image malloc error.", STDERR_FILENO);
+		delete_images(images);
 		return;
 	}
 	mvwaddstr(window.prompt, 0, 0, "PROMPT");
@@ -65,5 +74,6 @@ void	start_bonus_game(t_game *game)
 		print_prompt_winner(game, &window);
 		getch();
 	}
+	delete_images(images);
 	endwin();
 }

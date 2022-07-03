@@ -1,6 +1,9 @@
 #ifndef INCLUDES_BONUS_H
 #define INCLUDES_BONUS_H
 
+# define SCREEN_W 80
+# define SCREEN_H 35
+
 #include "alcu.h"
 
 #include <curses.h>

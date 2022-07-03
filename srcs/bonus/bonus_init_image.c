@@ -38,9 +38,35 @@ t_image* init_big_stick() {
 	return res;
 }
 
+bool init_images(t_image** images) {
+	t_image *res;
+	res = init_small_stick();
+	if (res == NULL) {
+		return false;
+	}
+	images[0] = res;
+	res = init_middle_stick();
+	if (res == NULL) {
+		return false;
+	}
+	images[1] = res;
+	res = init_big_stick();
+	if (res == NULL) {
+		return false;
+	}
+	images[2] = res;
+}
+
 void delete_image(t_image *image) {
 	ft_free_split(image->img);
 	free(image);
+}
+
+void delete_images(t_image** images) {
+	delete_image(images[0]);
+	delete_image(images[1]);
+	delete_image(images[2]);
+	return;
 }
 
 void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center) {
