@@ -28,6 +28,9 @@ static int pick_to_win(const t_heap *heap)
 		return (2);
 	if ((heap->num - 1) % 4 == 1)
 		return (1);
+	if (heap->num < 3) {
+		return (heap->num);
+	}
 	return (3);
 }
 
