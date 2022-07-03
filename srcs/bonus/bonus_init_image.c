@@ -15,6 +15,11 @@ t_image* init_middle_stick() {
 	return res;
 }
 
+void delete_image(t_image *image) {
+	ft_free_split(image->img);
+	free(image);
+}
+
 void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center) {
 	if (num > img->print_max) {
 		num = img->print_max;

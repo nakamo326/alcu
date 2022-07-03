@@ -11,6 +11,7 @@ typedef struct s_image {
 } t_image;
 
 t_image* init_middle_stick();
+void delete_image(t_image *image);
 void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center);
 
 #endif /* INCLUDES_IMAGE_H */

@@ -33,4 +33,5 @@ void	print_screen(t_game *game, WINDOW *game_screen)
 		print_img(game_screen, image, game->heap[i].num, 2 + i * image->img_h, center);
 	}
 	wrefresh(game_screen);
+	delete_image(image);
 }
