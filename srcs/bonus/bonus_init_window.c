@@ -23,6 +23,8 @@ bool init_window(t_window *window) {
 
 WINDOW* init_prompt(t_window* window) {
 	WINDOW *prompt = subwin(stdscr, 3, window->w, window->h - 3, 0);
+	mvwaddstr(prompt, 0, 0, "PROMPT");
+	mvwaddstr(prompt, 1, 1, "Press space key to start game.");
 	return prompt;
 }
 
