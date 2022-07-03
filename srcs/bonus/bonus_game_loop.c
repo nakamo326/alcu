@@ -28,29 +28,26 @@ static void print_prompt_winner(t_game *game, t_window *window) {
 
 void	start_bonus_game(t_game *game)
 {
-	bool		is_game_start = false;
-	bool		is_view_mode = false;
-	int			view_index = -1;
+	t_bonus		bonus_info = {false, false, -1,{NULL, NULL, NULL}};
 	t_window	window;
-	t_image		*images[3] = {NULL, NULL, NULL};
 
 	if (!init_window(&window)){
 		return;
 	}
-	if (!init_images(images)) {
+	if (!init_images(bonus_info.images)) {
 		endwin();
 		ft_putendl_fd("image malloc error.", STDERR_FILENO);
-		delete_images(images);
+		delete_images(bonus_info.images);
 		return;
 	}
 	mvwaddstr(window.prompt, 0, 0, "PROMPT");
 	mvwaddstr(window.prompt, 1, 1, "Press space key to start game.");
 	while (!is_game_over(game))
 	{
-		if (is_view_mode) {
-			print_view_screen(game, images, window.game_screen, view_index);
+		if (bonus_info.is_view_mode) {
+			print_view_screen(game, bonus_info.images, window.game_screen, bonus_info.view_index);
 		} else {
-			print_screen(game, images, window.game_screen);
+			print_screen(game, bonus_info.images, window.game_screen);
 		}
 		refresh();
 		int pick = 0;
@@ -61,24 +58,24 @@ void	start_bonus_game(t_game *game)
 			break;
 		}
 		if (key == ' ') {
-			is_game_start = true;
+			bonus_info.is_game_start = true;
 		}
-		if (!is_game_start) {
+		if (!bonus_info.is_game_start) {
 			continue;
 		}
 		if (key == 'v') {
-			is_view_mode = !is_view_mode;
-			view_index = game->index;
+			bonus_info.is_view_mode = !bonus_info.is_view_mode;
+			bonus_info.view_index = game->index;
 			continue;
 		}
-		if (is_view_mode && key == 'w') {
-			if (view_index != 0)
-				view_index--;
+		if (bonus_info.is_view_mode && key == 'w') {
+			if (bonus_info.view_index != 0)
+				bonus_info.view_index--;
 			continue;
 		}
-		if (is_view_mode && key == 's') {
-			if (view_index < game->index)
-				view_index++;
+		if (bonus_info.is_view_mode && key == 's') {
+			if (bonus_info.view_index < game->index)
+				bonus_info.view_index++;
 			continue;
 		}
 		if ('1' <= key && key <= '3')
@@ -98,10 +95,10 @@ void	start_bonus_game(t_game *game)
 		}
 	}
 	if (is_game_over(game)) {
-		print_screen(game, images, window.game_screen);
+		print_screen(game, bonus_info.images, window.game_screen);
 		print_prompt_winner(game, &window);
 		getch();
 	}
-	delete_images(images);
+	delete_images(bonus_info.images);
 	endwin();
 }

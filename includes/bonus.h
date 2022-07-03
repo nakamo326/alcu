@@ -16,6 +16,13 @@ typedef struct s_window {
 	WINDOW*	game_screen;
 } t_window;
 
+typedef struct s_bonus {
+	bool	is_game_start;
+	bool	is_view_mode;
+	int		view_index;
+	t_image	*images[3];
+} t_bonus;
+
 void	start_bonus_game(t_game *game);
 bool	init_window(t_window *window);
 WINDOW*	init_prompt(t_window *window);
