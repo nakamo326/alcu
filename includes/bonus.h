@@ -29,6 +29,6 @@ WINDOW*	init_prompt(t_window *window);
 WINDOW*	init_game_screen(t_window *window);
 
 void	print_screen(t_game *game, t_bonus *bonus_info, WINDOW * game_screen);
-void	key_hook(int key, t_game *game, t_bonus *bonus_info);
+bool	key_hook(int key, t_game *game, t_bonus *bonus_info);
 
 #endif /* INCLUDES_BONUS_H */

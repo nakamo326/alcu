@@ -18,7 +18,7 @@ void	print_game_screen(t_game *game, t_image **images, WINDOW *game_screen)
 			h_index += images[i]->img_h;
 			continue;
 		}
-		print_img(game_screen, images[i], game->heap[game->index - 2 + i].num, h_index, center);
+		print_img(game_screen, images[i], &game->heap[game->index - 2 + i], h_index, center);
 		h_index += images[i]->img_h;
 	}
 	wrefresh(game_screen);
@@ -38,11 +38,11 @@ void 	print_view_screen(t_game *game, t_image **images, WINDOW *game_screen, int
 			h_index += images[i]->img_h;
 			continue;
 		}
-		print_img(game_screen, images[i], game->heap[view_index - 2 + i].num, h_index, center);
+		print_img(game_screen, images[i], &game->heap[view_index - 2 + i], h_index, center);
 		h_index += images[i]->img_h;
 	}
 	if (view_index + 1 <= game->index) {
-		print_img(game_screen, images[1], game->heap[view_index + 1].num, h_index, center);
+		print_img(game_screen, images[1], &game->heap[view_index + 1], h_index, center);
 	}
 	wrefresh(game_screen);
 }

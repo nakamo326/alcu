@@ -1,3 +1,4 @@
+#include "alcu.h"
 #include "image.h"
 #include "libft.h"
 
@@ -70,17 +71,22 @@ void delete_images(t_image** images) {
 	return;
 }
 
-void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center) {
-	if (num > img->print_max) {
-		num = img->print_max;
+void print_img(WINDOW *game_screen, t_image *img, t_heap *heap, int y, int center) {
+	if (heap->num > img->print_max) {
+		heap->num = img->print_max;
 	}
-	int start = center - img->img_w * num / 2;
+	int start = center - img->img_w * heap->num / 2;
 	wmove(game_screen, y, start);
 	for (int i = 0;  i < img->img_h; i++)
 	{
-		for (int j = 0; j < num; j++)
+		for (int j = 0; j < heap->num; j++)
 		{
 			wprintw(game_screen, img->img[i]);
+		}
+		if (i == 0) {
+			mvwprintw(game_screen, y, 70, "item size:");
+		} else if (i == 1) {
+			mvwprintw(game_screen, y + 1, 70, "  %d", heap->num);
 		}
 		wmove(game_screen, y + (i + 1), start);
 	}

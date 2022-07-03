@@ -43,11 +43,15 @@ void	start_bonus_game(t_game *game)
 	while (!is_game_over(game))
 	{
 		print_screen(game, &bonus_info, window.game_screen);
+		refresh();
 		int key = getch();
 		mvwprintw(window.prompt, 2, 1, "got key input: %c" , (char)key);
 		wrefresh(window.prompt);
 		if (key == 'c') {
 			break;
+		}
+		if (key_hook(key, game, &bonus_info)) {
+			continue;
 		}
 		int pick = 0;
 		if ('1' <= key && key <= '3')

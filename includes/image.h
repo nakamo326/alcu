@@ -16,6 +16,6 @@ t_image* init_big_stick();
 bool init_images(t_image** images);
 void delete_image(t_image *image);
 void delete_images(t_image** images);
-void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center);
+void print_img(WINDOW *game_screen, t_image *img, t_heap *heap, int y, int center);
 
 #endif /* INCLUDES_IMAGE_H */
