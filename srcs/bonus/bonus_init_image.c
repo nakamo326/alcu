@@ -4,14 +4,37 @@
 #include <curses.h>
 #include <unistd.h>
 
-t_image* init_middle_stick() {
-	char* stick = " ,-, \\,-.| \\| || \\; |, \\'-'  ";
+t_image* init_small_stick() {
+	char* stick = " ,-, \\,-.| \\; |, \\'-'  ";
 
 	t_image *res = malloc(sizeof(t_image));
 	res->img = ft_split(stick, '\\');
-	res->img_h = 5;
+	res->img_h = 4;
 	res->img_w = 5;
 	res->print_max = 10;
+	return res;
+}
+
+t_image* init_middle_stick() {
+	char* stick = " ,-, \\,-.| \\| || \\| || \\| || \\; |, \\'-'  ";
+
+	t_image *res = malloc(sizeof(t_image));
+	res->img = ft_split(stick, '\\');
+	res->img_h = 7;
+	res->img_w = 5;
+	res->print_max = 10;
+	return res;
+}
+
+
+t_image* init_big_stick() {
+	char* stick = "  ,--, \\,--.'| \\|  : : \\:  | ' \\|  : | \\|  | ' \\'  : | \\;  |.' \\'--'   ";
+
+	t_image *res = malloc(sizeof(t_image));
+	res->img = ft_split(stick, '\\');
+	res->img_h = 7;
+	res->img_w = 7;
+	res->print_max = 7;
 	return res;
 }
 

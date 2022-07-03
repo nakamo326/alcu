@@ -10,7 +10,9 @@ typedef struct s_image {
 	int		print_max;
 } t_image;
 
+t_image* init_small_stick();
 t_image* init_middle_stick();
+t_image* init_big_stick();
 void delete_image(t_image *image);
 void print_img(WINDOW *game_screen, t_image *img, int num, int y, int center);
 
