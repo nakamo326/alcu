@@ -32,7 +32,7 @@ t_image* init_big_stick() {
 
 	t_image *res = malloc(sizeof(t_image));
 	res->img = ft_split(stick, '\\');
-	res->img_h = 7;
+	res->img_h = 9;
 	res->img_w = 7;
 	res->print_max = 7;
 	return res;
