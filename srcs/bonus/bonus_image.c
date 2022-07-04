@@ -72,14 +72,15 @@ void delete_images(t_image** images) {
 }
 
 void print_img(WINDOW *game_screen, t_image *img, t_heap *heap, int y, int center) {
+	int print_num = heap->num;
 	if (heap->num > img->print_max) {
-		heap->num = img->print_max;
+		print_num = img->print_max;
 	}
-	int start = center - img->img_w * heap->num / 2;
+	int start = center - img->img_w * print_num / 2;
 	wmove(game_screen, y, start);
 	for (int i = 0;  i < img->img_h; i++)
 	{
-		for (int j = 0; j < heap->num; j++)
+		for (int j = 0; j < print_num; j++)
 		{
 			wprintw(game_screen, img->img[i]);
 		}
